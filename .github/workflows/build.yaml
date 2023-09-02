@@ -30,12 +30,16 @@ jobs:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}        
 
       # Build 
-      - name: Setup default opam switch
+      - name: Setup opam build
         run: |
           opam -y install opam-build
 
       - name: Install Dependencies and Build
         run: |
-          opam install . --cli=2.1 -y --depext-only
+          opam -y install . --cli=2.1 --depext-only
           opam -y build 
 
+      # Run the application
+      - name: Execute application
+        run: |
+          opam exec hello_world
