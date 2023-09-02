@@ -1,0 +1,44 @@
+name: Build Project
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    name: Build Project    
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os:          
+          - ubuntu-latest
+        ocaml-compiler:
+          - "5.0"
+        
+    runs-on: ${{ matrix.os }}    
+
+    steps:
+      - name: Set-up OCaml ${{ matrix.ocaml-compiler }}
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}        
+
+      # Checkout source
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      # Build 
+      - name: Setup default opam switch
+        run: |
+          opam switch create default ocaml.5.0.0
+          opam switch default
+          opam -y install opam-build
+
+      - name: Install Server Dependencies and Build
+        run: |
+          cd server  
+          opam install . --cli=2.1 -y --depext-only
+          opam -y build 
+

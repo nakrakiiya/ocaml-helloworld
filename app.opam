@@ -1,0 +1,25 @@
+opam-version: "2.0"
+name: "ocaml-helloworld"
+authors: "Xiaofeng Yang"
+homepage: "https://github.com/nakrakiiya/ocaml-helloworld/"
+maintainer: "n.akr.akiiya@gmail.com"
+dev-repo: "git+ssh://git@github.com:nakrakiiya/ocaml-helloworld.git"
+bug-reports: "https://github.com/nakrakiiya/ocaml-helloworld/issues"
+synopsis: "Starter project for ocaml."
+version: "0.1"
+build: [
+  [ "dune" "build" ]
+  [ "dune" "install" ]
+]
+depends: [
+  # full ocaml in local sandbox
+  "ocaml-base-compiler" {>= "5.0.0~"} 
+
+  # deriving show
+  "ppx_show"
+
+  # dev deps
+  "dune" {build & >= "3.0"}  
+  "ocaml-lsp-server" 
+  "ocamlformat" {>= "0.26.0"}
+]

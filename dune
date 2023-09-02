@@ -1,0 +1,6 @@
+(executable
+ (name main)
+ (public_name hello_world)
+ (preprocess
+  (pps ppx_show))
+ (libraries ppx_show.runtime))
