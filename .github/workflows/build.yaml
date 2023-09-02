@@ -12,22 +12,22 @@ jobs:
         os:          
           - ubuntu-latest
         ocaml-compiler:
-          - "5.0.0"
+          - "5.0"
         
     runs-on: ${{ matrix.os }}    
 
     steps:
-      - name: Set-up OCaml ${{ matrix.ocaml-compiler }}
-        uses: ocaml/setup-ocaml@v2
-        with:
-          ocaml-compiler: ${{ matrix.ocaml-compiler }}        
-
       # Checkout source
       - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules: recursive
           fetch-depth: 0
+
+      - name: Set-up OCaml ${{ matrix.ocaml-compiler }}
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}        
 
       # Build 
       - name: Setup default opam switch
