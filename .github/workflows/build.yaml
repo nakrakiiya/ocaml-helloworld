@@ -32,8 +32,6 @@ jobs:
       # Build 
       - name: Setup default opam switch
         run: |
-          opam switch create default ocaml.${{ matrix.ocaml-compiler }}
-          opam switch default
           opam -y install opam-build
 
       - name: Install Dependencies and Build
