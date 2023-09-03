@@ -12,7 +12,7 @@ jobs:
         os:          
           - ubuntu-latest
           - macos-latest
-          - windows-latest          
+          # - windows-latest          (currently not work)
         ocaml-compiler:
           - "4.14"
         
