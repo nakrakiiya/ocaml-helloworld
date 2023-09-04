@@ -1,7 +1,7 @@
 profile = default
 version = 0.26.0
 ocaml-version=5.0.0
-margin=180
-max-indent=168
+margin=120
+max-indent=108
 line-endings=lf
 type-decl=sparse
